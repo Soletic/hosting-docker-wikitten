@@ -40,7 +40,7 @@ if [ ! -f ${DATA_VOLUME_WWWW}/html/config.php ]; then
 	git push
 
 	# Cron deploy
-	echo "* * * * * root bash -c 'cd ${DATA_VOLUME_WWWW}/html/library ; git add . ; git commit -m \"Changes from website\" ; git pull ; git push'" >> /etc/crontab
+	echo "* * * * * root bash -c 'cd ${DATA_VOLUME_WWWW}/html/library ; git add . ; git commit -m \"Changes from website\" ; git pull ; git push' > /dev/null 2>&1" >> /etc/crontab
 fi
 
 chown -R ${WORKER_UID}:${WORKER_UID} ${DATA_VOLUME_WWWW}/html ${DATA_VOLUME_WWWW}/wiki-content
