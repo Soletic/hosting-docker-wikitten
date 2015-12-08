@@ -43,4 +43,4 @@ if [ ! -f ${DATA_VOLUME_WWWW}/html/config.php ]; then
 	echo "* * * * * root bash -c 'cd ${DATA_VOLUME_WWWW}/html/library ; git add . ; git commit -m \"Changes from website\" ; git pull ; git push'" >> /etc/crontab
 fi
 
-chown ${WORKER_UID}:${WORKER_UID} ${DATA_VOLUME_WWWW}/html ${DATA_VOLUME_WWWW}/wiki-content
+chown -R ${WORKER_UID}:${WORKER_UID} ${DATA_VOLUME_WWWW}/html ${DATA_VOLUME_WWWW}/wiki-content
