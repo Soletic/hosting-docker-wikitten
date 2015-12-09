@@ -38,9 +38,10 @@ if [ ! -f ${DATA_VOLUME_WWWW}/html/config.php ]; then
 	git add index.md
 	git commit -m "Init wiki"
 	git push
-
-	# Cron deploy
-	echo "* * * * * root bash -c 'cd ${DATA_VOLUME_WWWW}/html/library ; git add . ; git commit -m \"Changes from website\" ; git pull ; git push' > /dev/null 2>&1" >> /etc/crontab
 fi
+
+# Cron deploy
+sed -ri -e "~html/library~d" /etc/crontab
+echo "* * * * * root bash -c 'cd ${DATA_VOLUME_WWWW}/html/library ; git add . ; git commit -m \"Changes from website\" ; git pull ; git push' > /dev/null 2>&1" >> /etc/crontab
 
 chown -R ${WORKER_UID}:${WORKER_UID} ${DATA_VOLUME_WWWW}/html ${DATA_VOLUME_WWWW}/wiki-content
